@@ -20,29 +20,12 @@ syn keyword Statement mov movw ldi lds ld ldd sts st std lpm elpm spm espm
 syn keyword Statement in out push pop lsl lsr rol ror asr swap
 syn keyword Statement bset bclr sbi cbi bst bld sec clc sen cln sez clz
 syn keyword Statement sei cli ses cls sev clv set clt seh clh nop sleep wdr
-syn keyword Statement loop if else mem prg use as 
+syn keyword Statement loop if else mem prg use as ptr prgptr byte word dword
+syn keyword Statement var struct pin ddr port proc struct inline extern
+syn keyword Statement vectors default
 syn keyword Function high low bitmask sizeof
 
-syn match Keyword "\ptr\>"
-syn match Keyword "\prgptr\>"
-syn match Keyword "\byte\>"
-syn match Keyword "\word\>"
-syn match Keyword "\dword\>"
-syn match Keyword "\var\>"
-syn match Keyword "struct\>"
-
-syn match Keyword "pin\>"
-syn match Keyword "\ddr\>"
-syn match Keyword "\port\>"
-
-syn match Keyword "\proc\>"
-syn match Keyword "\inline\>"
-syn match Keyword "extern\>"
-
 syn match Keyword "\$org\>"
-
-syn match Keyword "\vectors\>"
-syn match Keyword "\default\>"
 
 syn match PreCondit "#if\>"
 syn match PreCondit "#ifdef\>"
