@@ -29,15 +29,15 @@ syn match Keyword "\byte\>"
 syn match Keyword "\word\>"
 syn match Keyword "\dword\>"
 syn match Keyword "\var\>"
-syn match Keyword "\struct\>"
+syn match Keyword "struct\>"
 
-syn match Keyword "\pin\>"
+syn match Keyword "pin\>"
 syn match Keyword "\ddr\>"
 syn match Keyword "\port\>"
 
 syn match Keyword "\proc\>"
 syn match Keyword "\inline\>"
-syn match Keyword "\extern\>"
+syn match Keyword "extern\>"
 
 syn match Keyword "\$org\>"
 
