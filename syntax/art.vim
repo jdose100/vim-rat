@@ -9,7 +9,7 @@ elseif exists("b:current_syntax")
     finish
 endif
 
-syn case ignore
+syn case match
 syn keyword Statement rjmp ijmp eijmp jmp rcall eicall call ret reti
 syn keyword Statement syn keyword avrOpcode brcc brcs brvs brvc brmi brpl breq brne brhs brhc
 syn keyword Statement brts brtc brie brid brlo brlt brge brsh brbs brbc
@@ -20,23 +20,29 @@ syn keyword Statement mov movw ldi lds ld ldd sts st std lpm elpm spm espm
 syn keyword Statement in out push pop lsl lsr rol ror asr swap
 syn keyword Statement bset bclr sbi cbi bst bld sec clc sen cln sez clz
 syn keyword Statement sei cli ses cls sev clv set clt seh clh nop sleep wdr
-syn keyword Statement loop if else mem prg use as ptr prgptr byte word dword
-syn keyword Statement var struct pin ddr port proc struct inline extern
-syn keyword Statement vectors default
-syn keyword Function high low bitmask sizeof
+syn keyword Label loop if else use as saveregs pin
+syn keyword Character proc inline extern vectors default
+syn keyword Keyword ptr prgptr byte word dword var struct union mem prg
 
-syn match Keyword "\$org\>"
+syn keyword Function high low bitmask sizeof
+syn match Function /\w\+\((\)\@=/
+
+syn keyword Number true false
+
+syn match PreCondit "\$org\>"
 
 syn match PreCondit "#if\>"
 syn match PreCondit "#ifdef\>"
 syn match PreCondit "#ifndef\>"
 syn match PreCondit "#endif\>"
+syn match PreCondit "#else\>"
 
 syn match Include "#include\>"
 
 syn match Define "#define\>"
 syn match Define "#undef\>"
 
+syn case ignore
 syn match Number "\<0[0-7]*\>" " octal
 syn match Number "\<[0-7]\+[oO]\>" " octal
 syn match Number "\<[1-9][0-9]*\>" " decimal
@@ -47,14 +53,18 @@ syn match Number "\<0[Bb][01]\+\>" " binary
 syn match Number "\<[0-1]\+[bB]\>" " binary
 
 syn match Type "\<[Rr]\(30\|31\|[0-2][0-9]\|[0-9]\)\>"
-syn match Comment ";.*" contains=avrTodo
+syn match Comment ";.*" contains=Todo fold
+syn region Comment start=/\/\*/ end=/\*\// fold
 syn region String start=+"+ end=+"+
 
-syn keyword Structure SREG SPH SPL GIMSK GIFR TIMSK TIFR MCUCR MCUSR
-syn keyword Structure TCCR0 TCNT0 TCCR1A TCCR1B TCNT1H TCNT1L ADCH ADCL SP
+syn case match
+syn keyword Structure SREG SPH SPL GIMSK GIFR TIMSK TIFR MCUCR MCUSR X XL XH
+syn keyword Structure TCCR0 TCNT0 TCCR1A TCCR1B TCNT1H TCNT1L ADCH ADCL SP YL
 syn keyword Structure OCR1AH OCR1AL OCR1BH OCR1BL ICR1H ICR1L ACSR ADMUX ADCSR
-syn keyword Structure TCCR2 TCNT2 OCR2 ASSR WDTCR EEARH EEARL EEDR EECR
+syn keyword Structure TCCR2 TCNT2 OCR2 ASSR WDTCR EEARH EEARL EEDR EECR Y YH
 syn keyword Structure SPDR SPSR SPCR UDR USR UCR UBRR UBRRH UBRRL UCSRB UCSRA
+syn keyword Structure A0 A1 A2 A3 A4 A5 A6 A7 B0 B1 B2 B3 B4 B5 B6 B7 Z ZH ZL
+syn keyword Structure D0 D1 D2 D3 D4 D5 D6 D7 C0 C1 C2 C3 C4 C5 C6 C7 RAMEND
 syn match Structure "\<PORT[ABCDEF]\>"
 syn match Structure "\<DDR[ABCDEF]\>"
 syn match Structure "\<PIN[ABCDEF]\>"
@@ -79,5 +89,9 @@ syn match Special "\<P[ABCDEF][0-7]\>"
 syn match Special "\<P[ABCDEF][0-7]\>"
 syn match Special "\<PORT[ABCDEF][0-7]\>"
 syn match Special "\<SP[0-9]\>"
+
+hi Label guifg=#9370db gui=italic
+hi Character guifg=#5471d5 gui=italic
+hi Keyword guifg=#45df7e gui=italic
 
 let b:current_syntax = "art"
