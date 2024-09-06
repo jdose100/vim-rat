@@ -42,6 +42,8 @@ syn match Include "#include\>"
 syn match Define "#define\>"
 syn match Define "#undef\>"
 
+syn match PreCondit "#error\>"
+
 syn case ignore
 syn match Number "\<0[0-7]*\>" " octal
 syn match Number "\<[0-7]\+[oO]\>" " octal
